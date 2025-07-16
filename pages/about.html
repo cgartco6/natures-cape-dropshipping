@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nature's Cape AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fbfd;
+            color: var(--dark);
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(38, 70, 83, 0.85), rgba(38, 70, 83, 0.9)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .about-section {
+            padding: 80px 0;
+        }
+        
+        .ai-process-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .ai-step-icon {
+            background: var(--primary);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .ai-dashboard {
+            background: linear-gradient(135deg, #1a2a3a 0%, #0d1b2a 100%);
+            border-radius: 15px;
+            padding: 25px;
+            color: white;
+            height: 100%;
+        }
+        
+        .ai-stats {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+        
+        .ai-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .team-card {
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            background: white;
+            height: 100%;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .ai-feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .ai-feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .ai-feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-left: 10px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="fas fa-robot me-2"></i>
+                <strong>Nature's Cape AI</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-light" href="#">
+                            <i class="fas fa-shopping-cart me-2"></i>Cart (3)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">How AI Powers Our Business</h1>
+            <p class="lead">Discover the technology behind our fully automated dropshipping operation</p>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Our AI-Powered Vision</h2>
+                    <p>Nature's Cape AI was founded with a simple mission: to leverage artificial intelligence to create the most efficient, customer-focused supplement business in South Africa. Our system eliminates traditional business inefficiencies and passes the savings directly to our customers.</p>
+                    <p>By combining cutting-edge AI technology with our passion for health and wellness, we've created a business model that operates with minimal human intervention while delivering maximum value.</p>
+                    <div class="mt-4">
+                        <a href="products.html" class="btn btn-primary me-2">Shop AI-Curated Products</a>
+                        <a href="#ai-system" class="btn btn-outline-primary">See AI in Action</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="ai-dashboard">
+                        <div class="row text-center">
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <p class="ai-stats">98.7%</p>
+                                <p class="ai-stat-label">Automation Rate</p>
+                            </div>
+                            <div class="col-md-4 mb-4 mb-md-0">
+                                <p class="ai-stats">R457,820</p>
+                                <p class="ai-stat-label">Monthly Revenue</p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="ai-stats">37.5%</p>
+                                <p class="ai-stat-label">Profit Margin</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row my-5 py-5">
+                <div class="col-lg-6">
+                    <h2 class="mb-4">Our Journey</h2>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h5>2021 - Concept Development</h5>
+                            <p>Developed the AI algorithms that would power our business model. Focused on product sourcing and pricing optimization.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5>2022 - System Testing</h5>
+                            <p>Ran beta tests with a small product catalog. Optimized AI for the South African market and Western Cape logistics.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5>2023 - Official Launch</h5>
+                            <p>Launched with 15 rare supplements. AI system managed all aspects from day one.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h5>2024 - Expansion</h5>
+                            <p>Expanded product catalog to 50+ supplements. Started serving all of South Africa with AI-optimized logistics.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="AI Server" class="img-fluid rounded">
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ai-system" class="mt-5 pt-5">
+                <h2 class="text-center mb-5">How Our AI System Works</h2>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-search-dollar"></i>
+                            <h4>Product Sourcing</h4>
+                            <p>Our AI scans global suppliers 24/7 to find rare supplements at the best prices. It analyzes quality, shipping times, and reliability.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-robot"></i>
+                            <h4>Content Creation</h4>
+                            <p>AI generates compelling product descriptions, creates marketing content, and designs product images tailored to our audience.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-shipping-fast"></i>
+                            <h4>Order Fulfillment</h4>
+                            <p>Automated system processes orders, coordinates with suppliers, and manages shipping through Courier Guy and Paxi Lockers.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-comments"></i>
+                            <h4>Customer Engagement</h4>
+                            <p>AI chatbots handle inquiries, send shipping notifications, and provide personalized recommendations.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-chart-line"></i>
+                            <h4>Marketing Automation</h4>
+                            <p>AI creates and schedules social media content across all platforms, optimized for engagement and conversions.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-4">
+                        <div class="ai-feature-card">
+                            <i class="fas fa-file-invoice-dollar"></i>
+                            <h4>Tax & Compliance</h4>
+                            <p>Automatically calculates VAT, generates tax reports, and ensures SARS compliance without human intervention.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-5 pt-5">
+                <h2 class="text-center mb-5">Meet the Humans Behind the AI</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid" alt="Sarah Johnson">
+                            <div class="p-4">
+                                <h4 class="mb-1">Sarah Johnson</h4>
+                                <p class="text-primary mb-3">AI Systems Architect</p>
+                                <p class="small">Developed the core AI algorithms that power our business operations.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid" alt="David Chen">
+                            <div class="p-4">
+                                <h4 class="mb-1">David Chen</h4>
+                                <p class="text-primary mb-3">Logistics Automation</p>
+                                <p class="small">Created the shipping and fulfillment algorithms optimized for South Africa.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="team-card">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid" alt="Zinhle Nkosi">
+                            <div class="p-4">
+                                <h4 class="mb-1">Zinhle Nkosi</h4>
+                                <p class="text-primary mb-3">Customer Experience</p>
+                                <p class="small">Ensures our AI provides exceptional customer service at every touchpoint.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Nature's Cape AI</h5>
+                    <p>AI-powered supplement dropshipping specializing in rare and premium products for the Western Cape region.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">AI-Powered Features</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Automated Product Sourcing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Dynamic Pricing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>AI Marketing</li>
+                        <li><i class="fas fa-robot me-2"></i>Smart Inventory Management</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Our AI</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Cape Town, Western Cape</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>ai-support@naturescape.co.za</li>
+                        <li class="mb-2"><i class="fab fa-whatsapp me-2"></i>+27 21 123 4567</li>
+                        <li><i class="fas fa-headset me-2"></i>24/7 AI Customer Support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-5 bg-light opacity-10">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 Nature's Cape AI. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by AI: Running on our Home Server since 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
