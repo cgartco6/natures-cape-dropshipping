@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Nature's Cape AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fbfd;
+            color: var(--dark);
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(38, 70, 83, 0.85), rgba(38, 70, 83, 0.9)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .contact-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .ai-chat-container {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .ai-chat-header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 20px;
+        }
+        
+        .ai-chat-body {
+            padding: 20px;
+            height: 300px;
+            overflow-y: auto;
+        }
+        
+        .ai-chat-footer {
+            padding: 15px 20px;
+            border-top: 1px solid #eee;
+        }
+        
+        .ai-message {
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 15px;
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: rgba(233, 196, 106, 0.2);
+            border-radius: 15px;
+            padding: 12px 18px;
+            margin-bottom: 15px;
+            max-width: 80%;
+            align-self: flex-end;
+        }
+        
+        .contact-form .form-control {
+            border-radius: 10px;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .contact-form .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 0.25rem rgba(42, 157, 143, 0.25);
+        }
+        
+        .contact-form textarea.form-control {
+            height: 150px;
+        }
+        
+        .map-container {
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+        }
+        
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="fas fa-robot me-2"></i>
+                <strong>Nature's Cape AI</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-light" href="#">
+                            <i class="fas fa-shopping-cart me-2"></i>Cart (3)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">AI-Powered Customer Support</h1>
+            <p class="lead">Our AI assistant is available 24/7 to answer your questions and assist with orders</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card">
+                        <i class="fas fa-robot"></i>
+                        <h4>AI Chat Support</h4>
+                        <p>Our AI assistant is available 24/7 to answer your questions, help with orders, and provide product recommendations.</p>
+                        <p class="mb-0"><strong>Response Time:</strong> Instant</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card">
+                        <i class="fab fa-whatsapp"></i>
+                        <h4>WhatsApp Support</h4>
+                        <p>Chat with our AI on WhatsApp for quick assistance with orders, tracking, and product information.</p>
+                        <p class="mb-0"><strong>Phone:</strong> +27 21 123 4567</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="contact-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>Email Support</h4>
+                        <p>For more complex inquiries, email our team. Our AI will route your message to the right person.</p>
+                        <p class="mb-0"><strong>Email:</strong> support@naturescape.co.za</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="ai-chat-container">
+                        <div class="ai-chat-header">
+                            <h4 class="mb-0"><i class="fas fa-robot me-2"></i>AI Support Assistant</h4>
+                        </div>
+                        <div class="ai-chat-body d-flex flex-column" id="chatBody">
+                            <div class="ai-message">
+                                <p class="mb-0">Hello! I'm the Nature's Cape AI assistant. How can I help you today? 😊</p>
+                            </div>
+                            <div class="ai-message">
+                                <p class="mb-0">You can ask me about our products, order status, shipping information, or anything else related to our supplements!</p>
+                            </div>
+                        </div>
+                        <div class="ai-chat-footer">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Type your message..." id="chatInput">
+                                <button class="btn btn-primary" type="button" id="sendMessage">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="contact-card">
+                        <h3 class="mb-4">Send Us a Message</h3>
+                        <p>Our AI will analyze your message and route it to the appropriate team member if needed.</p>
+                        
+                        <form class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" class="form-control" placeholder="Your Name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Subject">
+                            <textarea class="form-control" placeholder="Your Message" required></textarea>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                    
+                    <div class="contact-card mt-4">
+                        <h4 class="mb-4">Our Location</h4>
+                        <div class="map-container mb-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d424843.4817095185!2d18.33052850741852!3d-33.91486832550031!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc500f8826eed7%3A0x687fe1fc2828aa87!2sCape%20Town!5e0!3m2!1sen!2sza!4v1689878901235!5m2!1sen!2sza" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                        <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Cape Town, Western Cape, South Africa</p>
+                        <p class="mb-1"><i class="fas fa-clock me-2"></i>AI Support: 24/7</p>
+                        <p class="mb-0"><i class="fas fa-phone me-2"></i>+27 21 123 4567</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Frequently Asked Questions</h2>
+            
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            How does the AI manage my order?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our AI system handles every aspect of your order from the moment you place it. It automatically processes the payment, coordinates with our suppliers, selects the optimal shipping method based on your location, and sends tracking updates at every stage. The system continuously monitors delivery progress and can proactively resolve common shipping issues.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            Are the product descriptions AI-generated?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Yes, all product descriptions are generated by our AI system. The AI analyzes scientific data, customer reviews, and supplier information to create accurate, compelling descriptions. Our system ensures all claims are compliant with South African regulations while highlighting the unique benefits of each supplement.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            How does the AI handle returns?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our AI return system automatically processes return requests based on our policy. Simply contact our AI support assistant to initiate a return. The system will guide you through the process, generate a return label if applicable, and process your refund once the item is received. The AI learns from each return to improve product quality and customer satisfaction.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            Is my payment information secure?
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Absolutely. Our AI payment system uses bank-level encryption and complies with all PCI DSS security standards. The system automatically processes payments without storing sensitive information on our servers. Additionally, our AI monitors transactions for suspicious activity to prevent fraud while ensuring legitimate transactions proceed smoothly.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                            How does the AI find rare supplements?
+                        </button>
+                    </h2>
+                    <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Our AI continuously scans global suppliers, scientific publications, and market trends to identify rare, high-quality supplements. It analyzes hundreds of data points including ingredient purity, supplier reliability, clinical research, and customer demand. When it identifies a promising supplement at a competitive price, it automatically adds it to our catalog and creates marketing materials.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Nature's Cape AI</h5>
+                    <p>AI-powered supplement dropshipping specializing in rare and premium products for the Western Cape region.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">AI-Powered Features</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Automated Product Sourcing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Dynamic Pricing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>AI Marketing</li>
+                        <li><i class="fas fa-robot me-2"></i>Smart Inventory Management</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Our AI</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Cape Town, Western Cape</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>ai-support@naturescape.co.za</li>
+                        <li class="mb-2"><i class="fab fa-whatsapp me-2"></i>+27 21 123 4567</li>
+                        <li><i class="fas fa-headset me-2"></i>24/7 AI Customer Support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-5 bg-light opacity-10">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 Nature's Cape AI. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by AI: Running on our Home Server since 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatBody = document.getElementById('chatBody');
+            const chatInput = document.getElementById('chatInput');
+            const sendButton = document.getElementById('sendMessage');
+            
+            // Predefined AI responses
+            const aiResponses = [
+                "I'd be happy to help with that! Could you provide more details about your question?",
+                "Our AI system handles that automatically. Typically, orders ship within 24 hours.",
+                "That's a great question! Our supplements are sourced from trusted suppliers and tested for purity.",
+                "I can assist with tracking your order. Please provide your order number.",
+                "Based on your interests, I'd recommend trying our Wild Kanna Extract for stress relief.",
+                "Returns are handled by our automated system. You can initiate a return through our AI assistant.",
+                "All our supplements are shipped from within South Africa, with most orders delivered in 2-3 business days."
+            ];
+            
+            sendButton.addEventListener('click', function() {
+                sendMessage();
+            });
+            
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+            
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    // Add user message
+                    const userMessage = document.createElement('div');
+                    userMessage.className = 'user-message';
+                    userMessage.innerHTML = `<p class="mb-0">${message}</p>`;
+                    chatBody.appendChild(userMessage);
+                    
+                    // Clear input
+                    chatInput.value = '';
+                    
+                    // Scroll to bottom
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                    
+                    // AI responds after a short delay
+                    setTimeout(function() {
+                        const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+                        
+                        const aiMessage = document.createElement('div');
+                        aiMessage.className = 'ai-message';
+                        aiMessage.innerHTML = `<p class="mb-0">${randomResponse}</p>`;
+                        chatBody.appendChild(aiMessage);
+                        
+                        // Scroll to bottom again
+                        chatBody.scrollTop = chatBody.scrollHeight;
+                    }, 1000);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
