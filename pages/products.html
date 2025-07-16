@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Nature's Cape AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a9d8f;
+            --secondary: #264653;
+            --accent: #e9c46a;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fbfd;
+            color: var(--dark);
+            padding-top: 80px;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .page-header {
+            background: linear-gradient(rgba(38, 70, 83, 0.85), rgba(38, 70, 83, 0.9)), url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            color: white;
+            text-align: center;
+        }
+        
+        .product-card {
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+            background: white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .product-card:hover {
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .badge-ai {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            z-index: 10;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 7px 14px rgba(42, 157, 143, 0.3);
+        }
+        
+        .section-title {
+            position: relative;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .filter-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .category-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .category-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .category-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .category-list li a {
+            color: var(--dark);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .category-list li a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .ai-recommendation {
+            background: rgba(42, 157, 143, 0.1);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .footer {
+            background: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+        
+        .footer a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            color: white;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-icon:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .pagination .page-link {
+            color: var(--primary);
+        }
+        
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+        
+        .sort-select {
+            border-radius: 30px;
+            padding: 8px 20px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <i class="fas fa-robot me-2"></i>
+                <strong>Nature's Cape AI</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="products.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-outline-light" href="#">
+                            <i class="fas fa-shopping-cart me-2"></i>Cart (3)
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-3">AI-Curated Supplement Collection</h1>
+            <p class="lead">Discover rare, high-quality supplements selected and priced by our AI system</p>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="filter-card">
+                        <h4 class="mb-4">Filter Products</h4>
+                        
+                        <div class="mb-4">
+                            <h5>Categories</h5>
+                            <ul class="category-list">
+                                <li><a href="#">All Products</a></li>
+                                <li><a href="#">Rare Botanicals</a></li>
+                                <li><a href="#">Immune Support</a></li>
+                                <li><a href="#">Energy & Focus</a></li>
+                                <li><a href="#">Stress Relief</a></li>
+                                <li><a href="#">Joint & Mobility</a></li>
+                                <li><a href="#">Digestive Health</a></li>
+                                <li><a href="#">New Arrivals</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5>Price Range</h5>
+                            <div class="form-range mb-3" id="priceRange"></div>
+                            <div class="d-flex justify-content-between">
+                                <span>R0</span>
+                                <span>R1000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h5>Benefits</h5>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="energyBoost">
+                                <label class="form-check-label" for="energyBoost">Energy Boost</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="stressRelief">
+                                <label class="form-check-label" for="stressRelief">Stress Relief</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="immuneSupport">
+                                <label class="form-check-label" for="immuneSupport">Immune Support</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="cognitiveEnhance">
+                                <label class="form-check-label" for="cognitiveEnhance">Cognitive Enhancement</label>
+                            </div>
+                        </div>
+                        
+                        <div class="ai-recommendation">
+                            <h6><i class="fas fa-robot me-2"></i>AI Recommendation</h6>
+                            <p class="small">Based on your browsing history, we recommend trying our Wild Kanna Extract for stress relief and mood enhancement.</p>
+                            <button class="btn btn-sm btn-outline-primary">View Recommendation</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <h3 class="mb-0">All Supplements</h3>
+                            <p class="mb-0">32 products found</p>
+                        </div>
+                        <div>
+                            <select class="form-select sort-select">
+                                <option selected>Sort by AI Recommendation</option>
+                                <option>Price: Low to High</option>
+                                <option>Price: High to Low</option>
+                                <option>Top Rated</option>
+                                <option>Newest Arrivals</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row g-4">
+                        <!-- Product 1 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI SELECTED</span>
+                                <img src="https://images.unsplash.com/photo-1593069567131-53a0614dde1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Wild Kanna Extract">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">Rare Find</span>
+                                        <span class="text-success fw-bold">In Stock</span>
+                                    </div>
+                                    <h5 class="card-title">Wild Kanna Extract</h5>
+                                    <p class="card-text text-muted small">Sourced from remote regions of the Western Cape.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R249.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R349.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 2 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI PRICED</span>
+                                <img src="https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Buchu Leaf Capsules">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">Local Specialty</span>
+                                        <span class="text-success fw-bold">In Stock</span>
+                                    </div>
+                                    <h5 class="card-title">Buchu Leaf Capsules</h5>
+                                    <p class="card-text text-muted small">Premium Buchu harvested from the Cederberg Mountains.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R199.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R259.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 3 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI RECOMMENDED</span>
+                                <img src="https://images.unsplash.com/photo-1590502593860-6e1f8c9b9b0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Rooibos Antioxidant Complex">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">Top Seller</span>
+                                        <span class="text-success fw-bold">In Stock</span>
+                                    </div>
+                                    <h5 class="card-title">Rooibos Antioxidant Complex</h5>
+                                    <p class="card-text text-muted small">Concentrated Rooibos extract with Vitamin C.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R179.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R229.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 4 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI OPTIMIZED</span>
+                                <img src="https://images.unsplash.com/photo-1590502593747-42a996133562?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Honeybush Immune Support">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">Limited Stock</span>
+                                        <span class="text-warning fw-bold">Only 5 Left</span>
+                                    </div>
+                                    <h5 class="card-title">Honeybush Immune Support</h5>
+                                    <p class="card-text text-muted small">Rare Honeybush extract combined with Echinacea.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R229.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R299.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 5 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI DISCOVERED</span>
+                                <img src="https://images.unsplash.com/photo-1590502593860-6e1f8c9b9b0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Pelargonium Respiratory Aid">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">New Arrival</span>
+                                        <span class="text-success fw-bold">In Stock</span>
+                                    </div>
+                                    <h5 class="card-title">Pelargonium Respiratory Aid</h5>
+                                    <p class="card-text text-muted small">Traditional Cape remedy for respiratory health.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R279.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R349.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Product 6 -->
+                        <div class="col-md-6 col-lg-4">
+                            <div class="product-card">
+                                <span class="badge-ai">AI PRICING</span>
+                                <img src="https://images.unsplash.com/photo-1593069567131-53a0614dde1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Devil's Claw Joint Support">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-2">
+                                        <span class="ai-badge">Best Value</span>
+                                        <span class="text-success fw-bold">In Stock</span>
+                                    </div>
+                                    <h5 class="card-title">Devil's Claw Joint Support</h5>
+                                    <p class="card-text text-muted small">Premium extract from the Kalahari region.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <div>
+                                            <span class="text-primary fw-bold">R219.99</span>
+                                            <span class="text-muted text-decoration-line-through ms-2">R289.99</span>
+                                        </div>
+                                        <button class="btn btn-sm btn-outline-primary add-to-cart">
+                                            <i class="fas fa-cart-plus me-1"></i> Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <nav class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">Nature's Cape AI</h5>
+                    <p>AI-powered supplement dropshipping specializing in rare and premium products for the Western Cape region.</p>
+                    <div class="mt-4">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="mb-4">AI-Powered Features</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Automated Product Sourcing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>Dynamic Pricing</li>
+                        <li class="mb-2"><i class="fas fa-robot me-2"></i>AI Marketing</li>
+                        <li><i class="fas fa-robot me-2"></i>Smart Inventory Management</li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4">
+                    <h5 class="mb-4">Contact Our AI</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i>Cape Town, Western Cape</li>
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i>ai-support@naturescape.co.za</li>
+                        <li class="mb-2"><i class="fab fa-whatsapp me-2"></i>+27 21 123 4567</li>
+                        <li><i class="fas fa-headset me-2"></i>24/7 AI Customer Support</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <hr class="my-5 bg-light opacity-10">
+            
+            <div class="row">
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2023 Nature's Cape AI. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Powered by AI: Running on our Home Server since 2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add to cart functionality
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            let cartCount = 3; // Initial cart count
+            
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const productCard = this.closest('.product-card');
+                    const productName = productCard.querySelector('.card-title').textContent;
+                    
+                    // Update cart count
+                    cartCount++;
+                    document.querySelector('.fa-shopping-cart').nextSibling.textContent = `Cart (${cartCount})`;
+                    
+                    // Show success message
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i class="fas fa-check me-1"></i> Added!';
+                    this.classList.remove('btn-outline-primary');
+                    this.classList.add('btn-success');
+                    
+                    // Reset button after 2 seconds
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.classList.remove('btn-success');
+                        this.classList.add('btn-outline-primary');
+                    }, 2000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
